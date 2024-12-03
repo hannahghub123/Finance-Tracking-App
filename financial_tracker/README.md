@@ -36,8 +36,8 @@ This project is a financial tracking application built with Django. It allows us
 
 1. Clone the repository:
 
-   git clone https://github.com/yourusername/financial-tracking-app.git
-   cd financial-tracking-app
+   git clone https://github.com/hannahghub123/finance-tracking-app.git
+   cd finance-tracking-app
 
 2. Create and activate a virtual environment (optional but recommended):
 
