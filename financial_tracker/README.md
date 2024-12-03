@@ -37,28 +37,29 @@ This project is a financial tracking application built with Django. It allows us
 1. Clone the repository:
 
    git clone https://github.com/hannahghub123/finance-tracking-app.git
+
    cd finance-tracking-app
 
-2. Create and activate a virtual environment (optional but recommended):
+3. Create and activate a virtual environment (optional but recommended):
 
     python -m venv venv
     source venv/bin/activate  # Unix/Mac
     .\venv\Scripts\activate  # Windows
 
-3. Install required dependencies:
+4. Install required dependencies:
 
     pip install -r requirements.txt
 
-4. Run the Django migrations:
+5. Run the Django migrations:
 
     python manage.py migrate
 
-5. Create a superuser account for accessing the admin panel:
+6. Create a superuser account for accessing the admin panel:
 
     python manage.py createsuperuser
 
-6. Run the Django development server:
+7. Run the Django development server:
 
     python manage.py runserver
 
-7. Access the app at http://127.0.0.1:8000/ and the admin interface at http://127.0.0.1:8000/admin/.
+8. Access the app at http://127.0.0.1:8000/ and the admin interface at http://127.0.0.1:8000/admin/.
