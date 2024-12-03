@@ -1,4 +1,4 @@
-# Financial Tracking App
+# Finance Tracking App
 
 ## Overview
 This project is a financial tracking application built with Django. It allows users to manage expenses and income, visualize data, and compare total income vs. expenses. The application includes an admin interface for managing financial records and a basic dashboard to display income vs. expense statistics.
