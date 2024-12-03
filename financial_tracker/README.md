@@ -43,23 +43,25 @@ This project is a financial tracking application built with Django. It allows us
 3. Create and activate a virtual environment (optional but recommended):
 
     python -m venv venv
-    source venv/bin/activate  # Unix/Mac
-    .\venv\Scripts\activate  # Windows
 
-4. Install required dependencies:
+   source venv/bin/activate  # Unix/Mac
+
+   .\venv\Scripts\activate  # Windows
+
+5. Install required dependencies:
 
     pip install -r requirements.txt
 
-5. Run the Django migrations:
+6. Run the Django migrations:
 
     python manage.py migrate
 
-6. Create a superuser account for accessing the admin panel:
+7. Create a superuser account for accessing the admin panel:
 
     python manage.py createsuperuser
 
-7. Run the Django development server:
+8. Run the Django development server:
 
     python manage.py runserver
 
-8. Access the app at http://127.0.0.1:8000/ and the admin interface at http://127.0.0.1:8000/admin/.
+9. Access the app at http://127.0.0.1:8000/ and the admin interface at http://127.0.0.1:8000/admin/.
