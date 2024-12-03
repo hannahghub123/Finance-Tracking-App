@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="page-inner">
+    <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+      <div>
+        <h3 class="fw-bold mb-3">Admin Dashboard</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-md-3">
+        <div class="card card-stats card-round">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-icon">
+                <div class="icon-big text-center icon-success bubble-shadow-small">
+                  <i class="fas fa-luggage-cart"></i>
+                </div>
+              </div>
+              <div class="col col-stats ms-3 ms-sm-0">
+                <div class="numbers">
+                  <p class="card-category">Total Income</p>
+                  <h4 class="card-title">{{total_income}} RS</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="card card-stats card-round">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-icon">
+                <div class="icon-big text-center icon-secondary bubble-shadow-small">
+                  <i class="far fa-check-circle"></i>
+                </div>
+              </div>
+              <div class="col col-stats ms-3 ms-sm-0">
+                <div class="numbers">
+                  <p class="card-category">Total Expense</p>
+                  <h4 class="card-title">{{total_expense}} RS</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-round">
+          <div class="card-header">
+            <div class="card-head-row">
+              <div class="card-title">Income vs Expense Overview</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="chart-container" style="min-height: 375px">
+              <canvas id="financialChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  // Fetch financial data from the server
+  fetch('/api/financial-data')
+    .then(response => response.json())
+    .then(data => {
+      const ctx = document.getElementById('financialChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: data.labels,
+          datasets: data.datasets
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+            }
+          },
+          scales: {
+            x: {
+              stacked: true,
+            },
+            y: {
+              stacked: true,
+              title: {
+                display: true,
+                text: 'Amount'
+              }
+            }
+          }
+        }
+      });
+    })
+    .catch(err => console.error('Error fetching data:', err));
+</script>
+
+{% endblock %}

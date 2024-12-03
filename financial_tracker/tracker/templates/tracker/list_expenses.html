@@ -1,0 +1,101 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="page-inner">
+  <div class="page-header">
+    <h3 class="fw-bold mb-3">All Expenses</h3>
+    <ul class="breadcrumbs mb-3">
+      <li class="nav-home">
+        <a href="#">
+          <i class="icon-home"></i>
+        </a>
+      </li>
+      <li class="separator">
+        <i class="icon-arrow-right"></i>
+      </li>
+      <li class="nav-item">
+        <a href="#">Total Expense - {{total_expense}} RS</a>
+      </li>
+    </ul>
+    <button type="button" class="btn btn-primary ms-auto" id="add_expense">+ Add Expense</button>
+
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="basic-datatables" class="display table table-striped table-hover basic-datatables">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Item</th>
+                  <th>Amount</th>
+                  <th>Category</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%for expense in expenses%}
+                <tr>
+                  <td>{{expense.date}}</td>
+                  <td>{{expense.item}}</td>
+                  <td>{{expense.amount}} RS</td>
+                  <td>{{expense.category}}</td>
+                </tr>
+                {%endfor%}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>    
+
+
+<div class="modal" tabindex="-1" role="dialog" id="addExpense" aria-hidden="true" data-backdrop="static"  data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">ADD EXPENSE</h5>
+        
+      </div>
+      <div class="modal-body">
+        <form method="POST" id="add_expense_form">
+          <div class="row ms-3">
+            {% csrf_token %}
+            {% for field in expense_form.visible_fields %}    
+              
+                <div class="form-group row">
+                  <div class="col-sm-4 mt-3">
+                    <label>{{field.label}}</label>
+                  </div>
+                  <div class="col-sm-6">
+                    {% if field.errors %}
+                      {% render_field field class="form-control validate is-invalid" autocomplete="off" %}
+                    {% else %}
+                        {% render_field field class="form-control" autocomplete="off" %}
+                    {% endif %}
+                    <small class="form-text text-muted text-red error-message"></small>
+                  </div>
+                </div>
+              
+            {%endfor%}
+            
+          </div>
+          
+            <div class="mt-5 mb-3 ms-3">
+                <button type="button" id="addexpense_submit" data-value="{{user.id}}" class="btn btn-success">Add Expense</button>
+            </div>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}
